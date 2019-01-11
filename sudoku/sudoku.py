@@ -1,4 +1,5 @@
 import numpy as np
+from datetime import datetime
 
 """ @package Sudoku
 Deze package bevat een klasse om een Sudoku op te lossen. De oplossingsstrategieen zijn gabaseerd op:
@@ -128,6 +129,9 @@ class Sudoku:
 
     def solve(self):
         """Wrapper die alle oplossingsstrategieen uitvoert"""
+
+        start = datetime.now()
+
         made_replacement = True
         run = 0
         while made_replacement:
@@ -142,9 +146,10 @@ class Sudoku:
             # Run 2: searchForHiddenSingles()
 
         self.solveBruteForce()
+        duration = datetime.now() - start
 
         if self.isSolved():
-            print("Sudoku opgelost!")
+            print("Sudoku opgelost in ",str(duration),"!", sep="")
             #self.printGrid()
         else:
             print("Sudoku is niet opgelost. Ongeldige sudoku?")
